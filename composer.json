@@ -1,0 +1,12 @@
+{
+    "name": "abda/web-programming-practice",
+    "description": "Practice file from lecutres and labs",
+    "license": "Apache2",
+    "authors": [
+        {
+            "name": "benjaminpasic",
+            "email": "benjamin.pasic@stu.ibu.edu.ba"
+        }
+    ],
+    "require": {}
+}
