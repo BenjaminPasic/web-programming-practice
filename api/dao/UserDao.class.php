@@ -17,8 +17,9 @@
       return $a;
     }
 
-    public function update_user($id,$user){
-
+    public function update_user($id, $user){
+      $user['id'] = $id;
+      $this->update("UPDATE users SET name = :name, email = :email, password = :password, account_id = :account_id WHERE id = :id",$user);
     }
 
   }

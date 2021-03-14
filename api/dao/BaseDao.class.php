@@ -25,8 +25,9 @@
       }
 
       //Update data in the database
-      public function update(){
-
+      public function update($query,$params){
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute($params);
       }
 
       //Executes Queries

@@ -5,12 +5,14 @@
 
   $user = [
     "name" => "Suada Pasic",
-    "email" => "suada.pasic@gmail.com",
+    "email" => "ada61dejo.pasic@gmail.com",
     "password" => "ddd123",
     "account_id" => 1
   ];
 
-  
+  $user_dao->update_user(18,$user);
+
+
 
 
 
