@@ -12,6 +12,15 @@
       return $this->query_unique("SELECT * FROM users WHERE id = :id",["id" => $id]);
     }
 
+    public function add_user($user){
+      $a = $this->insert("INSERT INTO users (name,email,password,account_id) VALUES (:name, :email, :password, :account_id)",$user);
+      return $a;
+    }
+
+    public function update_user($id,$user){
+
+    }
+
   }
 
 ?>

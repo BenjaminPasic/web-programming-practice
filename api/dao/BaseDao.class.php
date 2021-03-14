@@ -16,8 +16,12 @@
         }
 
       //Insert Data into Database
-      public function insert(){
-
+      public function insert($query,$params){
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute($params);
+        $params['id'] = $this->connection->lastInsertId();
+        $array = (array) $params;
+        return $array;
       }
 
       //Update data in the database
