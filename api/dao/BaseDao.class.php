@@ -9,7 +9,6 @@
         try {
             $this->connection = new PDO("mysql:host=".Config::DB_HOST.";dbname=".Config::DB_SCHEMA, Config::DB_USERNAME, Config::DB_PASSWORD);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
        } catch(PDOException $e){
             echo "Connection failed: " . $e->getMessage();
           }
@@ -27,13 +26,16 @@
       }
 
       //Executes Queries
-      public function query(){
-
+      public function query($query, $params){
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
       }
 
       //Execute query on a single row in database
-      public function query_unique(){
-
+      public function query_unique($query,$params){
+        $results = $this->query($query,$params);
+        return reset($results);
       }
 
     }
