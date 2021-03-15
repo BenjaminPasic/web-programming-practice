@@ -24,15 +24,17 @@
         return $array;
       }
 
-      //Update data in the database
-      public function update($table,$id,$entity){
+      //Update data in the database, note: "$id_column = "id" " essentialy means
+      //that if the parameter isn't given, the default value is "id", however
+      // if we pass an attribute for the id column, it gets overided by that value!
+      public function update($table,$id,$entity, $id_column = "id"){
 
         $sql = "UPDATE ${table} SET ";
         foreach ($entity as $key => $value) {
           $sql .= $key."= :".$key.", ";
         }
         $sql = substr($sql,0,-2);
-        $sql = $sql. " WHERE id = :id";
+        $sql = $sql. " WHERE ${$id_column} = :id";
         $entity['id'] = $id;
 
         $stmt = $this->connection->prepare($sql);
