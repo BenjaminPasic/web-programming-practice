@@ -9,7 +9,7 @@
     "password" => "ada61dejoo"
   ];
 
-  $user_dao->update_user(18,$user);
+  //$user_dao->update_user(18,$user);
 
 
 
