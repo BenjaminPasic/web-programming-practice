@@ -16,11 +16,24 @@
         }
 
       //Insert Data into Database
-      public function insert($query,$params){
-        $stmt = $this->connection->prepare($query);
-        $stmt->execute($params);
-        $params['id'] = $this->connection->lastInsertId();
-        $array = (array) $params;
+      public function insert($tablename,$entity){
+        $sql = "INSERT INTO {$tablename} (";
+        foreach ($entity as $key => $value){
+          $sql = $sql.$key.",";
+        }
+        $sql = substr($sql,0,-1);
+        $sql = $sql.") VALUES (";
+        foreach($entity as $key => $value){
+          $sql = $sql.":".$key.", ";
+        }
+        $sql = substr($sql,0,-2);
+        $sql = $sql.")";
+
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute($entity);
+
+        $entity['id'] = $this->connection->lastInsertId();
+        $array = (array) $entity;
         return $array;
       }
 
@@ -29,12 +42,12 @@
       // if we pass an attribute for the id column, it gets overided by that value!
       public function update($table,$id,$entity, $id_column = "id"){
 
-        $sql = "UPDATE ${table} SET ";
+        $sql = "UPDATE {$table} SET ";
         foreach ($entity as $key => $value) {
           $sql .= $key."= :".$key.", ";
         }
         $sql = substr($sql,0,-2);
-        $sql = $sql. " WHERE ${$id_column} = :id";
+        $sql = $sql. " WHERE {$id_column} = :id";
         $entity['id'] = $id;
 
         $stmt = $this->connection->prepare($sql);

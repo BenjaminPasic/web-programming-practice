@@ -13,8 +13,8 @@
     }
 
     public function add_user($user){
-      $a = $this->insert("INSERT INTO users (name,email,password,account_id) VALUES (:name, :email, :password, :account_id)",$user);
-      return $a;
+      $returned = $this->insert("users",$user);
+      return $returned;
     }
 
     public function update_user($id, $user){
@@ -22,7 +22,7 @@
     }
 
     public function update_user_by_email($email, $user){
-      $this->update("users",$email,$user,);
+      $this->update("users",$email,$user,"email");
     }
 
 
