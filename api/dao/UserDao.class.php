@@ -18,15 +18,7 @@
     }
 
     public function update_user($id, $user){
-      $sql = "UPDATE users SET ";
-      foreach ($user as $key => $value) {
-        $sql .= $key."= :".$key.", ";
-      }
-      $sql = substr($sql,0,-2);
-      $sql = $sql. " WHERE id = :id";
-      $user['id'] = $id;
-
-      $this->update($sql,$user);
+      $this->update("users",$id,$user);
     }
 
 

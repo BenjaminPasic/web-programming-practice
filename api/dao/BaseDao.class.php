@@ -25,9 +25,18 @@
       }
 
       //Update data in the database
-      public function update($query,$params){
-        $stmt = $this->connection->prepare($query);
-        $stmt->execute($params);
+      public function update($table,$id,$entity){
+
+        $sql = "UPDATE ${table} SET ";
+        foreach ($entity as $key => $value) {
+          $sql .= $key."= :".$key.", ";
+        }
+        $sql = substr($sql,0,-2);
+        $sql = $sql. " WHERE id = :id";
+        $entity['id'] = $id;
+
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute($entity);
       }
 
       //Executes Queries
