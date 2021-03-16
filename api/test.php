@@ -1,15 +1,17 @@
 <?php
+
   require_once dirname(__FILE__)."/dao/UserDao.class.php";
+  require_once dirname(__FILE__)."/dao/AccountDao.class.php";
 
-  $user_dao = new UserDao();
+  $dao = new AccountDao();
 
-  $user1 = [
-    "name" => "John Doe",
-    "email" => "jdoe@gmail.com",
-    "password" => "bruuhjdoe",
-    "account_id" => 1
+  $account = [
+    "name" => "Green Hosting",
+    "created_at" => date("Y-m-d H:i:s")
   ];
 
-  //$returned = $user_dao->add_user($user1);
-  //print_r($returned);
+  $resultset = $dao->add_account($account);
+  print_r($resultset);
+
+
  ?>
