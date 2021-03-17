@@ -6,12 +6,17 @@ error_reporting(E_ALL);
 
   require_once dirname(__FILE__)."/dao/UserDao.class.php";
   require_once dirname(__FILE__)."/dao/AccountDao.class.php";
+  require_once dirname(__FILE__)."/dao/CampaignDao.class.php";
 
-  $dao = new UserDao();
+  $dao = new CampaignDao();
 
-  $resultset = $dao->get_user_by_email("benjamin.pasic@gmail.com");
+  $campaign = [
+    "name" => "Flash sale of shoes",
+    "account_id" => 1,
+    "start_date" => date("Y-m-d H:i:s")
+  ];
 
-  print_r($resultset);
+  $dao->add($campaign);
 
 
  ?>
