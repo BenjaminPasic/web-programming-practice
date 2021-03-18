@@ -4,8 +4,9 @@ Flight::register('accountDao','AccountDao');
 
 // get functions based on limiter and delmitier
 Flight::route('GET /accounts', function(){
-   $accounts = Flight::accountDao()->get_all(0,10);
-   Flight::json($accounts);
+  $offset = Flight::query('offset',0);
+  $limit = Flight::query('limit',10);
+  Flight::json(Flight::accountDao()->get_all($offset,$limit));
 });
 
 //Get single account by id

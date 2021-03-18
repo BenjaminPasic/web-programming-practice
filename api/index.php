@@ -10,6 +10,14 @@ require_once dirname(__FILE__).'/routes/accounts.php';
 
 Flight::register('accountDao','AccountDao');
 
+Flight::map('query',function($name, $default_value = NULL){
+    $request = Flight::request();
+    $queryparam = @$request->query->getData()[$name];
+    $query_param = $queryparam ? $queryparam : $default_value;
+
+    return $query_param;
+});
+
 Flight::start();
 
 ?>
