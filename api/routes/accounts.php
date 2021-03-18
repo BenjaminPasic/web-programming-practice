@@ -6,22 +6,27 @@ Flight::register('accountDao','AccountDao');
 Flight::route('GET /accounts', function(){
   $offset = Flight::query('offset',0);
   $limit = Flight::query('limit',10);
-  Flight::json(Flight::accountDao()->get_all($offset,$limit));
+
+  $search = Flight::query('search');
+
+  if($search){
+    Flight::json(Flight::accountDao()->get_accounts($search,$offset,$limit));
+  }else{
+    Flight::json(Flight::accountDao()->get_all($offset,$limit));
+  }
+
 });
 
 //Get single account by id
 Flight::route('GET /accounts/@id', function($id){
-
    $accounts = Flight::accountDao()->get_by_id($id);
    Flight::json($accounts);
-
 });
 
 // Add new account
 Flight::route('POST /accounts', function(){
    $request = Flight::request();
    $data = $request->data->getData();
-
    $account = Flight::accountDao()->add($data);
    print_r($account);
 });
