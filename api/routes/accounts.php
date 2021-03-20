@@ -1,7 +1,5 @@
 <?php
 
-Flight::register('accountDao','AccountDao');
-
 // get functions based on limiter and delmitier
 Flight::route('GET /accounts', function(){
   $offset = Flight::query('offset',0);

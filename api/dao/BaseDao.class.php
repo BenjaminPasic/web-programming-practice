@@ -20,8 +20,8 @@
         }
 
       //Insert Data into Database
-      protected function insert($entity){
-        $sql = "INSERT INTO {$this->table} (";
+      protected function insert($table,$entity){
+        $sql = "INSERT INTO {$table} (";
         foreach ($entity as $key => $value){
           $sql = $sql.$key.",";
         }
