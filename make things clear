@@ -1,0 +1,8 @@
+Three layers : Data Access Layer, Business Logic Layer and Presentation Layer
+
+Database <- Dao layer <- Business Logic Layer <- Presentation layer.
+
+Presentation layer can only contain FlightPHP syntax, all database request should be handled in the business logic layer.
+
+Business Logic Layer for example is used to check if data is correctly formated, or if it's missing crucial information
+before inserting into database.

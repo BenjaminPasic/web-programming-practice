@@ -18,9 +18,9 @@ require_once dirname(__FILE__).'/BaseService.class.php';
       }
     }
 
-
-
+    public function add($account){
+      //Validate account details
+      if(!isset($account['name'])) throw new Exception("name is missing");
+      parent::add($account);
+    }
   }
-
-
-?>

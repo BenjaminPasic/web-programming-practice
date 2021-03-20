@@ -17,14 +17,12 @@ Flight::route('GET /accounts/@id', function($id){
 
 // Add new account
 Flight::route('POST /accounts', function(){
-   $request = Flight::request();
-   $data = $request->data->getData();
-   $account = Flight::accountService()->add($data);
-   print_r($account);
+   $data = Flight::request()->data->getData();;
+   Flight::accountService()->add($data);
 });
 
 //Update existing account
 Flight::route('PUT /accounts/@id', function($id){
-  $request = Flight::request()->data->getData();
+  $data = Flight::request()->data->getData();
   Flight::json(Flight::accountService()->update($id,$data));
 });
