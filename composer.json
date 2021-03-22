@@ -1,11 +1,11 @@
 {
-    "name": "abda/web-programming-practice",
-    "description": "Practice file from lecutres and labs",
+    "name": "ibu/autoresponder",
+    "description": "Auto reseponder system for intro2web course",
     "license": "Apache2",
     "authors": [
         {
-            "name": "benjaminpasic",
-            "email": "benjamin.pasic@stu.ibu.edu.ba"
+            "name": "dinokeco",
+            "email": "dino.keco@gmail.com"
         }
     ],
     "require": {

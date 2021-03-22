@@ -1,58 +1,66 @@
 <?php
-
-require_once dirname(__FILE__).'/../dao/AccountDao.class.php';
+require_once dirname(__FILE__). '/BaseService.class.php';
 require_once dirname(__FILE__).'/../dao/UserDao.class.php';
-require_once dirname(__FILE__).'/BaseService.class.php';
+require_once dirname(__FILE__).'/../dao/AccountDao.class.php';
 
+class UserService extends BaseService{
 
-  class UserService extends BaseService{
+  private $accountDao;
 
-    private $accountDao;
+  public function __construct(){
+    $this->dao = new UserDao();
+    $this->accountDao = new AccountDao();
+  }
 
-    public function __construct(){
-      $this->dao = new UserDao;
-      $this->accountDao = new AccountDao();
-    }
+  public function register($user){
+    if (!isset($user['account'])) throw new Exception("Account field is required");
 
-    public function register($user){
-      if(!isset($user['account'])) throw new Exception("Account field is required!");
+    $this->dao->beginTransaction();
 
-      try {
-        $account = $this->accountDao->add([
-          "name" => $user['account'],
-          "status" => "PENDING",
-          "created_at" => date(Config::DATE_FORMAT)
-        ]);
+    try {
 
-        $user = parent::add([
-          "account_id" => $account['id'],
-          "name" => $user['name'],
-          "email" => $user['email'],
-          "password" => $user['password'],
-          "status" => "PENDING",
-          "role" => "USER",
-          "created_at" => date(Config::DATE_FORMAT),
-          "token" => md5(random_bytes(16))
-        ]);
-        //commit here
-      } catch (\Exception $e) {
-        //rollback
+      $account = $this->accountDao->add([
+        "name" => $user['account'],
+        "status" => "PENDING",
+        "created_at" => date(Config::DATE_FORMAT)
+      ]);
+
+      $user = parent::add([
+        "account_id" => $account['id'],
+        "name" => $user['name'],
+        "email" => $user['email'],
+        "password" => $user['password'],
+        "status" => "PENDING",
+        "role" => "USER",
+        "created_at" => date(Config::DATE_FORMAT),
+        "token" => md5(random_bytes(16))
+      ]);
+
+    } catch (\Exception $e) {
+      $this->dao->rollBack();
+      if (str_contains($e->getMessage(), 'users.uq_user_email')) {
+        throw new Exception("Account with same email exists in the database", 400, $e);
+      }else{
         throw $e;
       }
-
-      return $user;
     }
+      $this->dao->commit();
+      
+    // TODO: send email with some token
 
-    public function confirm($token){
-      $user = $this->dao->get_user_by_token($token);
-
-      if(!isset($user['id'])) throw Exception("Invalid token");
-
-      $this->dao->update($user['id'],["status" => "active"]);
-      $this->accountDao->update($user['account_id'],["status" => "active"]);
-
-      //TODO send email to customer
-    }
-
-
+    return $user;
   }
+
+  public function confirm($token){
+    $user = $this->dao->get_user_by_token($token);
+
+    if (!isset($user['id'])) throw Exception("Invalid token");
+
+    $this->dao->update($user['id'], ["status" => "ACTIVE"]);
+    $this->accountDao->update($user['account_id'], ["status" => "ACTIVE"]);
+
+    //TODO send email to customer
+  }
+
+}
+?>

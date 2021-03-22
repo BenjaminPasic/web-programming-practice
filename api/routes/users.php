@@ -1,12 +1,11 @@
 <?php
 
-// Add new account
 Flight::route('POST /users/register', function(){
-   $data = Flight::request()->data->getData();;
-   Flight::json(Flight::userService()->register($data));
+  $data = Flight::request()->data->getData();
+  Flight::json(Flight::userService()->register($data));
 });
 
 Flight::route('GET /users/confirm/@token', function($token){
-   Flight::userService()->confirm($token);
-   Flight::json(["message" => "Your account has been activated"]);
+  Flight::userService()->confirm($token);
+  Flight::json(["message" => "Your account has been activated"]);
 });

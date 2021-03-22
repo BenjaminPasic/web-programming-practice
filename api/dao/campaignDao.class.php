@@ -8,3 +8,4 @@ class CampaignDao extends BaseDao{
   }
 
 }
+?>

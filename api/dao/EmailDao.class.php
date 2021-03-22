@@ -7,6 +7,5 @@ class EmailDao extends BaseDao{
     parent::__construct("emails");
   }
 
-
-
 }
+?>

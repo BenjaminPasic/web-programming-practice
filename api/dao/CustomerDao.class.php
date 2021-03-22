@@ -7,6 +7,5 @@ class CustomerDao extends BaseDao{
     parent::__construct("customers");
   }
 
-  
-
 }
+?>
