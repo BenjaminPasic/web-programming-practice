@@ -6,3 +6,8 @@ Presentation layer can only contain FlightPHP syntax, all database request shoul
 
 Business Logic Layer for example is used to check if data is correctly formated, or if it's missing crucial information
 before inserting into database.
+
+GET - get data
+POST - create data
+PUT - update data
+DELETE - delete data

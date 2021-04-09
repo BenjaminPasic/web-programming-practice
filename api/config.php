@@ -7,6 +7,11 @@ class Config {
   const DB_USERNAME = "autoresponder";
   const DB_PASSWORD = "autoresponder";
   const DB_SCHEME = "autoresponder";
+
+  const SMTP_HOST = "smtp.googlemail.com";
+  const SMTP_PORT = "587";
+  const SMTP_USER = "emilsenderweb@gmail.com";
+  const SMTP_PASSWORD = "amdpulse";
 }
 
 ?>
