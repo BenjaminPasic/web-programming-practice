@@ -18,7 +18,7 @@ class UsersService{
         return $db_user;
     }
 
-    public function register_user($data){
+    public function register($data){
 
         $db_user = $this->dao->get_user_by_email($data['email']);
 
@@ -42,6 +42,17 @@ class UsersService{
         $this->dao->add_new_user($filtered_data);
 
         return ["message" => "New user added"];
+
+    }
+
+    public function login($data){
+        
+        $db_user = $this->dao->get_user_by_email($data['email']);
+
+        if(!isset($db_user['email'])) throw new Exception("User with the given email doesn't exist.");
+        if($db_user['password'] != $data['password']) throw new Exception("Invalid password.");
+
+        return ["message" => "Successfuly logged in."];
 
     }
 

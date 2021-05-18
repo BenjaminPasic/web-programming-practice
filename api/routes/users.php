@@ -35,5 +35,24 @@ Flight::route('GET /admin/user/@id', function($id){
  */
 Flight::route('POST /register', function(){
     $data = Flight::request()->data->getData();
-    Flight::json(Flight::usersService()->register_user($data));
+    Flight::json(Flight::usersService()->register($data));
 });
+
+/**
+ * @OA\Post(path="/login", tags={"login"},
+ *   @OA\RequestBody(description="Basic user info", required=true,
+ *       @OA\MediaType(mediaType="application/json",
+ *    			@OA\Schema(
+ *             @OA\Property(property="password", required="true", type="string", example="12345",	description="Password"),
+ *             @OA\Property(property="email", required="true", type="string", example="myemail@gmail.com",	description="Email of the user")
+ *          )
+ *       )
+ *     ),
+ *  @OA\Response(response="200", description="Message that user has been created.")
+ * )
+ */
+Flight::route('POST /login', function(){
+    $data = Flight::request()->data->getData();
+    Flight::json(Flight::usersService()->login($data));
+});
+
