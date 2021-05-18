@@ -27,6 +27,12 @@ class BaseDao {
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    protected function query_unique($sql, $params){
+        $statement = $this->connection->prepare($sql);
+        $statement->execute($params);
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
     //Used to intsert not rows into database
     protected function insert($params){
         $sql = "INSERT INTO {$this->table_name} (";
