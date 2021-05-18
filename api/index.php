@@ -8,6 +8,7 @@ error_reporting(E_ALL);
 require_once dirname(__FILE__).'/../vendor/autoload.php';
 
 //Load in routes
+require_once dirname(__FILE__).'/routes/middleware.php';
 require_once dirname(__FILE__).'/routes/users.php';
 
 //Load in services
@@ -15,6 +16,11 @@ require_once dirname(__FILE__).'/services/UsersService.class.php';
 
 //Register services
 Flight::register("usersService", "UsersService");
+
+Flight::route('/swagger', function(){
+    Flight::redirect('/docs');
+});
+
 
 Flight::start();
 

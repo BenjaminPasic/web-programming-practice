@@ -8,7 +8,7 @@
  */
 
 /**
- * @OA\Get(path="/admin/user/{id}", tags={"admin"},
+ * @OA\Get(path="/admin/user/{id}", tags={"admin"}, security={{"ApiKeyAuth": {}}},
  *    @OA\Parameter(@OA\Schema(type="string"), default=60, name= "id",description = "Id of the user you want to search", in="path", allowReserved=true),
  *    @OA\Response(response="200", description="Token")
  * )
@@ -16,6 +16,15 @@
 Flight::route('GET /admin/user/@id', function($id){
     Flight::json(Flight::usersService()->get_user_by_id($id));
 });
+
+/**
+ * @OA\Get(path="/user/account", tags={"user"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Response(response="200", description="Fetch user account")
+ * )
+ */
+Flight::route('GET /user/account', function(){
+    Flight::json(Flight::usersService()->get_user_by_id(Flight::get('user')['id']));
+  });
 
 /**
  * @OA\Post(path="/register", tags={"login"},

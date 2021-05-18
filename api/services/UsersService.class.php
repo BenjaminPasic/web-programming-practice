@@ -1,5 +1,9 @@
 <?php
+
 require_once dirname(__FILE__).'/../dao/UsersDao.class.php';
+require_once dirname(__FILE__).'/../Config.php';
+
+use Firebase\JWT\JWT;
 
 class UsersService{
 
@@ -11,7 +15,7 @@ class UsersService{
 
     public function get_user_by_id($id){
 
-        $db_user = $this->dao->get_user_by_id(1);
+        $db_user = $this->dao->get_user_by_id($id);
 
         if(!isset($db_user)) throw new Exception("User doesn't exist.");
 
@@ -52,7 +56,17 @@ class UsersService{
         if(!isset($db_user['email'])) throw new Exception("User with the given email doesn't exist.");
         if($db_user['password'] != $data['password']) throw new Exception("Invalid password.");
 
-        return ["message" => "Successfuly logged in."];
+        $payload = [
+            "exp" => (time() + Config::JWT_TOKEN_TIME),
+            "id" => $db_user['id'],
+            "role" => $db_user['role']
+        ];
+
+        $jwt = JWT::encode($payload, Config::JWT_SECRET);
+
+        return [
+            "message" => "Successfuly logged in.",
+            "token" => $jwt];
 
     }
 

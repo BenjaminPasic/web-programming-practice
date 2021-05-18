@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'a9154a2239530044a136b333b932d861c6c60940',
+    'reference' => '4fcc22031fdf6c78b09e1cec909765dd6a02b4ba',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'a9154a2239530044a136b333b932d861c6c60940',
+      'reference' => '4fcc22031fdf6c78b09e1cec909765dd6a02b4ba',
     ),
     'doctrine/annotations' => 
     array (
@@ -37,6 +37,15 @@
       array (
       ),
       'reference' => 'e864bbf5904cb8f5bb334f99209b48018522f042',
+    ),
+    'firebase/php-jwt' => 
+    array (
+      'pretty_version' => 'v5.2.1',
+      'version' => '5.2.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f42c9110abe98dd6cfe9053c49bc86acc70b2d23',
     ),
     'mikecao/flight' => 
     array (

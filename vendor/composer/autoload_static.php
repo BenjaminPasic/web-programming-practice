@@ -29,6 +29,10 @@ class ComposerStaticInit150e36845fd6cded9125454568ba9b26
         array (
             'OpenApi\\' => 8,
         ),
+        'F' => 
+        array (
+            'Firebase\\JWT\\' => 13,
+        ),
         'D' => 
         array (
             'Doctrine\\Common\\Lexer\\' => 22,
@@ -56,6 +60,10 @@ class ComposerStaticInit150e36845fd6cded9125454568ba9b26
         'OpenApi\\' => 
         array (
             0 => __DIR__ . '/..' . '/zircote/swagger-php/src',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
         'Doctrine\\Common\\Lexer\\' => 
         array (

@@ -1,0 +1,4 @@
+//Admin role
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjEzNjg0NTYsImlkIjoiNCIsInJvbGUiOiJBRE1JTiJ9.QnOBCePT4vthWADO-jrhV88HETL_zdyy0guvyZ3X0XE
+
+//User role
