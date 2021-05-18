@@ -8,13 +8,15 @@ require_once dirname(__FILE__).'/dao/UsersDao.class.php';
 
 $dao = new UsersDao();
 
-$user = [
-    "name" => "Adnan",
-    "surname" => "Pasic",
-    "password" => "abc123"
+$params = [
+    "password" => "newpass123"
 ];
 
-print_r($dao->add_new_user($user));
+print_r($dao->update_user($params, 1));
+
+
+
+
 
 
 

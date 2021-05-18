@@ -16,4 +16,8 @@ class UsersDao extends BaseDao{
         return $this->insert($user);
     }
 
+    public function update_user($user, $id){
+        return $this->update($user, $id);
+    }
+
 }

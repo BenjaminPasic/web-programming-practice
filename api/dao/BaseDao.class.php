@@ -27,7 +27,7 @@ class BaseDao {
     }
 
     protected function insert($params){
-        $sql = "INSERT INTO users (";
+        $sql = "INSERT INTO {$this->table_name} (";
         foreach($params as $key => $value){
             $sql .= $key . ', ';
         }
@@ -42,6 +42,22 @@ class BaseDao {
 
         $params['id'] = $this->connection->lastInsertId();
         return $params;
+    }
+
+    protected function update($params, $id){
+        $sql = "UPDATE {$this->table_name} SET ";
+
+        foreach($params as $key => $value){
+            $sql .= $key . '= :' . $key . ', '; 
+        }
+
+        $sql = substr($sql, 0, -2);
+        $sql .= ' WHERE id = :id';
+
+        $params['id'] = $id;
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute($params);
     }
         
 }
