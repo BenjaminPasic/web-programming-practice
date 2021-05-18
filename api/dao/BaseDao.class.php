@@ -20,12 +20,14 @@ class BaseDao {
 
     }
 
+    //Universal query function with parameters
     protected function query($sql, $params){
         $statement = $this->connection->prepare($sql);
         $statement->execute($params);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    //Used to intsert not rows into database
     protected function insert($params){
         $sql = "INSERT INTO {$this->table_name} (";
         foreach($params as $key => $value){
@@ -44,6 +46,7 @@ class BaseDao {
         return $params;
     }
 
+    //Updates existing rows in database
     protected function update($params, $id){
         $sql = "UPDATE {$this->table_name} SET ";
 
