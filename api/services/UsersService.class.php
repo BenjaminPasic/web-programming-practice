@@ -64,9 +64,7 @@ class UsersService{
 
         $jwt = JWT::encode($payload, Config::JWT_SECRET);
 
-        return [
-            "message" => "Successfuly logged in.",
-            "token" => $jwt];
+        return ["token" => $jwt];
 
     }
 
