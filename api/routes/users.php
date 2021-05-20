@@ -65,3 +65,12 @@ Flight::route('POST /login', function(){
     Flight::json(Flight::usersService()->login($data));
 });
 
+/**
+ * @OA\Get(path="/confirm/{token}", tags={"login"},
+ *     @OA\Parameter(type="string", in="path", name="token", default=123, description="Temporary token for activating account"),
+ *     @OA\Response(response="200", description="Message upon successfull activation.")
+ * )
+ */
+Flight::route('GET /confirm/@token', function($token){
+    Flight::json(Flight::usersService()->confirm_token($token));
+});

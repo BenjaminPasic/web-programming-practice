@@ -9,5 +9,14 @@ class Config{
 
     const JWT_TOKEN_TIME = 9000;
     const JWT_SECRET = 'verysecretkey';
+
+    const DATE_FORMAT = "Y-m-d H:i:s";
+
+    //Gmail SMTP setup
+    const SMTP_HOST = 'smtp.gmail.com';
+    const SMTP_PORT = "465";
+    const SMTP_EMAIL = "emilsenderweb@gmail.com";
+    const SMTP_PASSWORD = "amdpulse";
+
     
 }

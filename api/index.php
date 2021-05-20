@@ -18,9 +18,9 @@ require_once dirname(__FILE__).'/services/UsersService.class.php';
 Flight::register("usersService", "UsersService");
 
 //error handling
-Flight::map('error', function(Exception $ex){
+/*Flight::map('error', function(Exception $ex){
   Flight::json(["message" => $ex->getMessage()], $ex->getCode() ? $ex->getCode() : 500);
-});
+});*/
 
 
 Flight::route('/swagger', function(){

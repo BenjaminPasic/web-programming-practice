@@ -20,8 +20,12 @@ class UsersDao extends BaseDao{
         return $this->insert($user);
     }
 
-    public function update_user($user, $id){
-        return $this->update($user, $id);
+    public function update_user($data_to_be_changed, $id){
+        return $this->update($data_to_be_changed, $id);
+    }
+
+    public function get_user_by_token($token){
+        return $this->query_unique("SELECT * FROM users WHERE token = :token", ['token' => $token]);
     }
 
 }
