@@ -37,7 +37,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body>
+    <body style="display: none;">
 
         <div id="wrapper">
 
@@ -123,7 +123,7 @@
                             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a onclick="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -229,7 +229,7 @@
                                         <a href="blank.html">Blank Page</a>
                                     </li>
                                     <li>
-                                        <a href="login.html">Login Page</a>
+                                        <a href="login.html"">Login Page</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
@@ -273,16 +273,21 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
-              var app = $.jQuerySPApp({defaultView  : "dashboard"}); // initialize
-        
-              // define routes
-              app.route({view: 'dashboard', load: 'dashboard.html' });
-              app.route({view: 'notifications', load: 'notifications.html' });
-              app.route({view: 'tables', load: 'tables.html' });
-    
-              // run app
+              var app = $.jQuerySPApp({defaultView  : "dashboard"}); 
               app.run();
+
+              if(!window.localStorage.getItem("token")){
+                  window.location = "login.html";
+              }else{
+                  $('body').show();
+              }
+
             });
+
+            function logout(){
+                window.localStorage.clear();
+                window.location = 'login.html';
+            }
           </script>
 
     </body>
